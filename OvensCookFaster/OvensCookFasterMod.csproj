@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>OvensCookFaster</RootNamespace>
+		<LangVersion>default</LangVersion>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<AssemblyName>OvensCookFaster</AssemblyName>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="Mod.cs" />
+		<Compile Include="OvensCookFaster.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="LavaGang.MelonLoader" Version="0.7.0" />
+	  <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>il2cpp_libs\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Il2CppInterop.Runtime">
+	    <HintPath>il2cpp_libs\Il2CppInterop.Runtime.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Il2Cppmscorlib">
+	    <HintPath>il2cpp_libs\Il2Cppmscorlib.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine">
+	    <HintPath>il2cpp_libs\UnityEngine.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.CoreModule">
+	    <HintPath>il2cpp_libs\UnityEngine.CoreModule.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+</Project>
