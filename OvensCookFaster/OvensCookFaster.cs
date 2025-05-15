@@ -1,12 +1,9 @@
 ﻿using HarmonyLib;
 
-
 #if MONO_BUILD
 using ScheduleOne.ObjectScripts;
-using ScheduleOne.StationFramework;
 #else
 using Il2CppScheduleOne.ObjectScripts;
-using Il2CppScheduleOne.StationFramework;
 #endif
 
 namespace OvensCookFaster
@@ -16,27 +13,23 @@ namespace OvensCookFaster
     {
         private static int _divider = 4;
 
-        // For passing state between prefix and postfix.
-        public class GetCookDurationState(OvenCookOperation operation)
-        {
-            public OvenCookOperation operation = operation;
-            public int oldCookDuration = (int)Traverse.Create(operation).Field("cookDuration").GetValue();
-        }
-
-        [HarmonyPrefix]
-        public static void Prefix(OvenCookOperation __instance, out GetCookDurationState __state)
-        {
-            __state = new GetCookDurationState(__instance);
-        }
-
         [HarmonyPostfix]
-        public static void Postfix(ref int __result, GetCookDurationState __state)
+        public static void Postfix(ref int __result)
         {
-            if (__state.oldCookDuration == -1)
-            {
-                Traverse.Create(__state.operation).Field("cookDuration").SetValue(__state.oldCookDuration / _divider);
-            }
-            __result = __state.oldCookDuration / _divider;
+            __result = __result / _divider;
+        }
+    }
+
+    // I have a suspicion GetCookDuration may be inlined in some places.
+    // Without this patch chemists stand idle at labovens for several minutes. 
+    [HarmonyPatch(typeof(OvenCookOperation), "IsReady")]
+    public static class OvenCookOperationIsReadyPatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(OvenCookOperation __instance, ref bool __result)
+        {
+            // Re-insert original method body.
+            __result = __instance.CookProgress >= __instance.GetCookDuration();
         }
     }
 }

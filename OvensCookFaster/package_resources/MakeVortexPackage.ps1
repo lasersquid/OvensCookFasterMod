@@ -9,10 +9,12 @@ param (
  if ("$arch" -eq "il2cpp") {
     $dll_file = "$($proj).dll"
     $arch_str = "IL2CPP"
+    $net_ver = "net6"
 }
 elseif ("$arch" -eq "mono") {
     $dll_file = "$($proj)Mono.dll"
     $arch_str = "Mono"
+    $net_ver = "netstandard2.1"
 }
 else {
     Write-Output 'Specify "-arch il2cpp" or "-ver mono"!'
@@ -25,6 +27,7 @@ if ("$($proj)" -eq "") {
 }
 
 $zip_file = "$($proj)_$($arch_str)-$($ver).zip"
+Write-Output ".net ver: $($net_ver)"
 
 # Clean and create directory structure
 rm -Recurse -Force "package\vortex\$($arch)"
@@ -32,7 +35,8 @@ rm -Force "package\vortex\$($zip_file)"
 mkdir "package\vortex\$($arch)\mods"
 
 # Copy the files
-Copy "bin\Debug\net6\$($dll_file)" "package\vortex\$($arch)\mods"
+Write-Output "copy from path: bin\Debug\$($net_ver)\$($dll_file)"
+Copy "bin\Debug\$($net_ver)\$($dll_file)" "package\vortex\$($arch)\mods"
 
 # Zip it all up
 cd "package\vortex\$($arch)"

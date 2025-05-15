@@ -2,7 +2,7 @@
 
 A simple Harmony mod for Schedule I that makes lab ovens cook in a quarter of the usual time.
 
-Works by adding a prefix to the OvenCookOperation.GetCookDuration method.
+Works by adding prefixes to the OvenCookOperation.GetCookDuration and OvenCookOperation.IsReady methods.
 
 Compatible with IL2CPP and Mono versions (main and alternate branches) of Schedule I.
 
@@ -19,8 +19,8 @@ Compatible with IL2CPP and Mono versions (main and alternate branches) of Schedu
 
 
 ## Build instructions:
-1. Clone repo. Create directories "il2cpp_libs" and "mono_libs" inside PlantsAlwaysGrow directory.
-2. Open solution in Visual Studio (I used v2022). Load OvensAlwaysCook.csproj for the IL2CPP version, and OvensAlwaysCookMono.csproj for the Mono version.
+1. Clone repo. Create directories "il2cpp_libs" and "mono_libs" inside OvensCookFaster directory.
+2. Open solution in Visual Studio (I used v2022). Load OvensCookFaster.csproj for the IL2CPP version, and OvensCookFasterMono.csproj for the Mono version.
 3. Install recommended NuGet packages (Project>Manage NuGet Packages).
 4. For each missing dependency, copy required libraries to the respective *_libs directories.
 	* For the IL2CPP libraries, copy DLLs from Schedule I's "MelonLoader/Il2CppAssemblies" and "MelonLoader/net6" directories to the il2cpp_libs directory.
@@ -30,8 +30,8 @@ Compatible with IL2CPP and Mono versions (main and alternate branches) of Schedu
 
 
 ## Install instructions:
-* Vortex (from Nexus Mods) (RECOMMENDED): Open Vortex Mod Manager, then, in a browser, navigate to [mod page](https://www.nexusmods.com/schedule1/mods/963) and click "Vortex" download button.
+* Vortex (from Nexus Mods) (RECOMMENDED): Open Vortex Mod Manager, then, in a browser, navigate to [mod page](https://www.nexusmods.com/schedule1/mods/963) and click "Vortex" download button, then select the appropriate version.
 * Vortex (from DLL): Open Vortex Mod Manager, select game as Schedule I and click on "Mods" tab. Click "Install From File" button and navigate to appropriate dll.
 * Thunderstore/r2modman: Open Thunderstore/r2modman, select game, open or create a profile, then click "Get Mods", and search for "OvensCookFaster<IL2CPP/Mono>" by lasersquid. Or, navigate [here (mono)](https://thunderstore.io/c/schedule-i/p/lasersquid/OvensCookFasterMono/) or [here (il2cpp)](https://thunderstore.io/c/schedule-i/p/lasersquid/OvensCookFasterIL2CPP/), and click "Install with Mod Manager".
-* Manual: Copy OvensCookFaster.dll/OvensCookFasterMono.dll from project bin/Debug/net6 directory to Schedule I's mods directory.
+* Manual: Copy net6/OvensCookFaster.dll or netstandard21/OvensCookFasterMono.dll from project bin/Debug directory to Schedule I's mods directory.
 
